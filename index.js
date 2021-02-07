@@ -35,6 +35,9 @@ function isArray(value) {
 
 function computeNewValue(value, f, options, forceRecurse) {
   var valueIsArray = isArray(value);
+  if (value instanceof Date) {
+    return value;
+  }
   if (valueIsArray && options.arrayRecursive) {
     return transformArray(value, f, options);
   } else if (isObject(value) && !valueIsArray && (options.recursive || forceRecurse)) {
